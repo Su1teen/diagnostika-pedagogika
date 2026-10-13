@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="paper" data-size="md">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ерекше білім беру қажеттіліктері бар балалардың психологиялық-педагогикалық диагностикасы</title>
+  <meta name="description" content="Ерекше білім беру қажеттіліктері бар балалардың психологиялық-педагогикалық диагностикасы — электрондық оқулық. Дәрістер, бағалау және рефлексия, әдістемелік нұсқаулықтар." />
+  <link rel="icon" type="image/png" href="./assets/images/logo.jpg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <script type="module" crossorigin src="./assets/index-DTm2IEr6.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CyQ7vrF-.css">
+</head>
+<body>
+  <div id="readingProgress" class="reading-progress-bar"></div>
+
+  <!-- Бас навигация тақтасы -->
+  <header class="top-navbar">
+    <div class="nav-left">
+      <button id="toggleSidebarBtn" class="menu-toggle-btn" aria-label="Мазмұнын ашу/жабу" title="Мазмұны">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="book-brand" role="button" tabindex="0" id="brandHomeBtn" style="cursor: pointer;">
+        <span class="book-brand-title">Балалардың психологиялық-педагогикалық диагностикасы</span>
+        <span class="book-brand-subtitle">Есенғұлова М.Н. • Ақтөбе, 2025</span>
+      </div>
+    </div>
+
+    <!-- Тұрақты бөлімдер және навигация -->
+    <nav class="nav-center" aria-label="Негізгі бөлімдер">
+      <button class="nav-tab-btn" data-route="cover">Басты бет</button>
+      <button class="nav-tab-btn" id="prefaceModalBtn">Алғы сөз</button>
+      <button class="nav-tab-btn" data-route="ch1">Дәрістер</button>
+      <button class="nav-tab-btn" data-route="ch3">Практика</button>
+      <button class="nav-tab-btn" data-route="assessment" style="color: var(--accent); font-weight: 600;">
+        📊 Бағалау & Рефлексия
+      </button>
+      <button class="nav-tab-btn" data-route="methodical" style="color: var(--badge-method); font-weight: 600;">
+        💡 Әдістемелік нұсқау
+      </button>
+      <button class="nav-tab-btn" id="authorModalBtn">Автор туралы</button>
+      <a href="./originals/учебник.docx" download class="nav-tab-btn" style="text-decoration: none; color: #2563eb; font-weight: 600;">📥 DOCX жүктеу</a>
+    </nav>
+
+    <!-- Оқу құралдары -->
+    <div class="nav-right">
+      <button id="openSearchBtn" class="control-btn" title="Іздеу (Ctrl+K)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span style="margin-left: 4px;">Іздеу</span>
+      </button>
+
+      <button id="fontDecBtn" class="control-btn" title="Қаріпті кішірейту">A-</button>
+      <button id="fontIncBtn" class="control-btn" title="Қаріпті үлкейту">A+</button>
+      <button id="themeToggleBtn" class="control-btn" title="Тақырыпты ауыстыру">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <button id="fullscreenBtn" class="control-btn" title="Толық экран режимі">⛶</button>
+    </div>
+  </header>
+
+  <!-- Басты контейнер -->
+  <div class="app-container">
+    <!-- Сайдбар (Мазмұны) -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-title">Оқулық мазмұны</span>
+        <input type="text" id="sidebarFilterInput" class="sidebar-search-input" placeholder="Тараулар бойынша сүзу..." />
+      </div>
+      <nav id="tocNav" class="toc-nav" aria-label="Оқулық тараулары">
+        <!-- JavaScript толтырады -->
+      </nav>
+    </aside>
+
+    <!-- Негізгі оқу алаңы -->
+    <main class="content-area">
+      <div id="readingContainer" class="reading-container">
+        <!-- JavaScript динамикалық түрде парақты сызады -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Іздеу модалі -->
+  <div id="searchModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="globalSearchInput" placeholder="Оқулық бойынша іздеу (1600+ абзац)..." style="width: 100%; border: none; outline: none; background: transparent; font-size: 1rem; color: var(--text-main);" />
+        </div>
+        <button id="closeSearchModalBtn" style="padding: 0.25rem 0.5rem; font-size: 1.25rem; color: var(--text-muted);">&times;</button>
+      </div>
+      <div id="searchResults" class="modal-body">
+        <p style="color: var(--text-muted); text-align: center; padding: 2rem 0;">Кілт сөзді енгізіңіз (мысалы: есту қабілеті, логопед, коррекция, тест, ПМПК)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Алғы сөз модалі -->
+  <div id="prefaceModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main);">Алғы Сөз</h3>
+        <button id="closePrefaceModalBtn" style="padding: 0.25rem 0.5rem; font-size: 1.25rem; color: var(--text-muted);">&times;</button>
+      </div>
+      <div id="prefaceModalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Автор туралы модалі -->
+  <div id="authorModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main);">Автор Туралы</h3>
+        <button id="closeAuthorModalBtn" style="padding: 0.25rem 0.5rem; font-size: 1.25rem; color: var(--text-muted);">&times;</button>
+      </div>
+      <div id="authorModalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+</body>
+</html>

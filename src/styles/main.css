@@ -1,0 +1,344 @@
+/* ==========================================================================
+   Ерекше білім беру қажеттіліктері бар балалардың диагностикасы
+   Дизайн жүйесі: Академиялық, заманауи типографика, минимализм
+   ========================================================================== */
+
+:root {
+  --bg-app: #fbfbf9;
+  --bg-surface: #ffffff;
+  --bg-sidebar: #f5f4ef;
+  --bg-hover: #eceae1;
+  --bg-active: #dfdbcf;
+  --bg-card: #ffffff;
+  --border: #e6e3d8;
+  --border-strong: #d2cdbe;
+  
+  --text-main: #1c1d22;
+  --text-secondary: #525866;
+  --text-muted: #7e8695;
+  
+  --accent: #4338ca;
+  --accent-light: #eef2ff;
+  --accent-hover: #3730a3;
+
+  --badge-assess: #6366f1;
+  --badge-assess-bg: #e0e7ff;
+  --badge-method: #059669;
+  --badge-method-bg: #d1fae5;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.09);
+
+  --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Merriweather', 'Noto Serif', Georgia, serif;
+  --font-base-size: 17px;
+  --line-height-body: 1.82;
+  --measure-width: 820px;
+  --sidebar-width: 330px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+[data-theme="sepia"] {
+  --bg-app: #f6f1e8;
+  --bg-surface: #fdfaf4;
+  --bg-sidebar: #eee7dc;
+  --bg-hover: #e3d9cb;
+  --bg-active: #d5c8b5;
+  --bg-card: #fdfaf4;
+  --border: #ded3c0;
+  --border-strong: #c8baa2;
+  --text-main: #2b2319;
+  --text-secondary: #635544;
+  --text-muted: #8a7a66;
+  --accent: #6b21a8;
+  --accent-light: #f3e8ff;
+  --accent-hover: #581c87;
+}
+
+[data-theme="dark"] {
+  --bg-app: #111317;
+  --bg-surface: #181b20;
+  --bg-sidebar: #14171c;
+  --bg-hover: #232730;
+  --bg-active: #2f3440;
+  --bg-card: #181b20;
+  --border: #292e38;
+  --border-strong: #3d4554;
+  --text-main: #e6eaf0;
+  --text-secondary: #9da6b7;
+  --text-muted: #6b7585;
+  --accent: #818cf8;
+  --accent-light: #1e1b4b;
+  --accent-hover: #a5b4fc;
+}
+
+[data-size="sm"] { --font-base-size: 15px; }
+[data-size="md"] { --font-base-size: 17px; }
+[data-size="lg"] { --font-base-size: 19px; }
+[data-size="xl"] { --font-base-size: 21px; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: var(--font-base-size);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--accent); text-decoration: none; }
+button { font-family: inherit; font-size: 0.95rem; border: none; background: none; cursor: pointer; color: inherit; }
+
+/* Прогресс жолағы */
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--accent);
+  width: 0%;
+  z-index: 2000;
+  transition: width 0.1s linear;
+}
+
+/* Бас тақта */
+.top-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 62px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  gap: 1rem;
+}
+
+.nav-left { display: flex; align-items: center; gap: 0.75rem; }
+.menu-toggle-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background-color: var(--bg-surface);
+}
+.menu-toggle-btn:hover { background-color: var(--bg-hover); }
+
+.book-brand-title { font-size: 0.92rem; font-weight: 700; color: var(--text-main); line-height: 1.2; }
+.book-brand-subtitle { font-size: 0.75rem; color: var(--text-muted); }
+
+.nav-center { display: flex; align-items: center; gap: 0.4rem; }
+.nav-tab-btn {
+  padding: 0.4rem 0.75rem; font-size: 0.84rem; font-weight: 500;
+  border-radius: var(--radius-sm); color: var(--text-secondary);
+  display: flex; align-items: center; gap: 0.35rem;
+}
+.nav-tab-btn:hover { background-color: var(--bg-hover); color: var(--text-main); }
+.nav-tab-btn.active { background-color: var(--accent-light); color: var(--accent); font-weight: 700; }
+
+.nav-right { display: flex; align-items: center; gap: 0.45rem; }
+.control-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.35rem 0.65rem; font-size: 0.85rem; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); background-color: var(--bg-surface); color: var(--text-secondary);
+}
+.control-btn:hover { background-color: var(--bg-hover); color: var(--text-main); }
+
+/* Негізгі контейнер */
+.app-container { display: flex; flex: 1; position: relative; min-height: calc(100vh - 62px); }
+
+/* Сайдбар */
+.sidebar {
+  width: var(--sidebar-width); background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border); display: flex; flex-direction: column;
+  position: sticky; top: 62px; height: calc(100vh - 62px); overflow-y: auto;
+  transition: transform 0.25s ease, margin-left 0.25s ease; z-index: 900;
+}
+.sidebar.collapsed { margin-left: calc(-1 * var(--sidebar-width)); }
+
+.sidebar-header {
+  padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 0.65rem;
+}
+.sidebar-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); }
+.sidebar-search-input {
+  width: 100%; padding: 0.5rem 0.75rem; font-size: 0.85rem; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); background-color: var(--bg-surface); color: var(--text-main); outline: none;
+}
+.sidebar-search-input:focus { border-color: var(--accent); }
+
+.toc-nav { padding: 0.75rem 0.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.toc-item-link {
+  display: flex; align-items: baseline; gap: 0.5rem; padding: 0.45rem 0.75rem;
+  font-size: 0.88rem; color: var(--text-secondary); border-radius: var(--radius-sm);
+  line-height: 1.35; transition: all 0.12s ease;
+}
+.toc-item-link:hover { background-color: var(--bg-hover); color: var(--text-main); }
+.toc-item-link.active {
+  background-color: var(--bg-surface); color: var(--accent); font-weight: 600;
+  box-shadow: var(--shadow-sm); border-left: 3px solid var(--accent);
+}
+.toc-item-badge { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); flex-shrink: 0; }
+
+/* Оқу алаңы */
+.content-area {
+  flex: 1; display: flex; justify-content: center; padding: 2.5rem 1.5rem 5rem;
+  background-color: var(--bg-app);
+}
+.reading-container { width: 100%; max-width: var(--measure-width); display: flex; flex-direction: column; gap: 2rem; }
+
+/* Мұқаба */
+.cover-hero {
+  background-color: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 3rem 2.5rem; text-align: center;
+  box-shadow: var(--shadow-sm); display: flex; flex-direction: column; align-items: center; gap: 1.35rem;
+}
+.cover-ministry {
+  font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+  color: var(--text-secondary); letter-spacing: 0.05em; max-width: 620px;
+}
+.cover-title { font-family: var(--font-body); font-size: 2.1rem; font-weight: 700; color: var(--text-main); line-height: 1.25; }
+.cover-author { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+.cover-place { font-size: 0.88rem; color: var(--text-muted); }
+.cover-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+
+.btn-primary {
+  background-color: var(--accent); color: #ffffff; padding: 0.75rem 1.6rem;
+  font-size: 0.95rem; font-weight: 600; border-radius: var(--radius-md);
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-primary:hover { background-color: var(--accent-hover); color: #ffffff; transform: translateY(-1px); }
+.btn-secondary {
+  background-color: var(--bg-hover); color: var(--text-main); padding: 0.75rem 1.35rem;
+  font-size: 0.95rem; font-weight: 600; border-radius: var(--radius-md); border: 1px solid var(--border);
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-secondary:hover { background-color: var(--bg-active); }
+
+/* Тұрақты бөлімдер: Бағалау & Әдістемелік нұсқау (Permanent Interactive Sections) */
+.special-section-header {
+  background-color: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem 2.25rem; display: flex;
+  flex-direction: column; gap: 1rem; box-shadow: var(--shadow-sm);
+}
+.special-title { font-size: 1.65rem; font-weight: 700; color: var(--text-main); }
+.special-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
+
+.filter-pills-row {
+  display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem;
+}
+.filter-pill {
+  padding: 0.35rem 0.85rem; font-size: 0.82rem; font-weight: 600;
+  border-radius: 999px; border: 1px solid var(--border); background-color: var(--bg-app);
+  color: var(--text-secondary); cursor: pointer; transition: all 0.15s ease;
+}
+.filter-pill:hover { background-color: var(--bg-hover); color: var(--text-main); }
+.filter-pill.active { background-color: var(--accent); color: #fff; border-color: var(--accent); }
+
+.items-grid {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.special-item-card {
+  background-color: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 1.35rem; display: flex;
+  flex-direction: column; gap: 0.75rem; box-shadow: var(--shadow-sm);
+  transition: all 0.15s ease;
+}
+.special-item-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.item-card-header {
+  display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem;
+}
+.item-keyword-tag {
+  padding: 0.2rem 0.6rem; border-radius: var(--radius-sm); font-weight: 600;
+  background-color: var(--accent-light); color: var(--accent);
+}
+.item-chapter-ref { color: var(--text-muted); font-weight: 500; }
+.item-card-text { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.7; color: var(--text-main); }
+.item-jump-link {
+  align-self: flex-start; font-size: 0.85rem; font-weight: 600; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 0.35rem; padding-top: 0.25rem;
+}
+
+/* Мәтін мақаласы */
+.article-header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.article-category-badge { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--accent); }
+.article-title { font-family: var(--font-body); font-size: 1.85rem; font-weight: 700; color: var(--text-main); line-height: 1.3; }
+
+.article-body {
+  font-family: var(--font-body); font-size: 1rem; line-height: var(--line-height-body);
+  color: var(--text-main); display: flex; flex-direction: column; gap: 1.25rem;
+}
+.article-body p { text-align: justify; text-justify: inter-word; }
+.section-heading { font-family: var(--font-ui); font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-top: 2rem; }
+
+/* Схема және суреттер */
+.book-figure { margin: 1.5rem 0; text-align: center; }
+.book-image { max-width: 100%; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+.book-figure figcaption { font-family: var(--font-ui); font-size: 0.82rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+/* Таблицалар */
+.table-container { overflow-x: auto; margin: 1.5rem 0; }
+.book-table { width: 100%; border-collapse: collapse; font-family: var(--font-ui); font-size: 0.9rem; }
+.book-table td { border: 1px solid var(--border-strong); padding: 0.65rem 0.85rem; }
+
+/* Уақытша белгілеу (Highlight anchor) */
+.highlight-target {
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  transition: background-color 1.5s ease;
+  border-radius: var(--radius-sm);
+  padding: 0.25rem;
+}
+
+/* Навигация */
+.chapter-navigation {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; gap: 1rem;
+}
+.nav-card {
+  display: flex; flex-direction: column; padding: 1rem 1.25rem;
+  background-color: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); max-width: 48%; gap: 0.25rem; transition: all 0.15s ease;
+}
+.nav-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.nav-card-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); }
+.nav-card-title { font-size: 0.9rem; font-weight: 600; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Модаль терезелер */
+.modal-backdrop {
+  position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 1.5rem;
+}
+.modal-backdrop.open { display: flex; }
+.modal-box {
+  background-color: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); width: 100%; max-width: 680px; max-height: 85vh;
+  display: flex; flex-direction: column; box-shadow: var(--shadow-lg); overflow: hidden;
+}
+.modal-header { padding: 1.15rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.modal-body { padding: 1.5rem; overflow-y: auto; line-height: 1.7; font-size: 0.95rem; }
+
+@media (max-width: 860px) {
+  .nav-center { display: none; }
+  .sidebar { position: fixed; top: 62px; left: 0; height: calc(100vh - 62px); box-shadow: var(--shadow-lg); }
+  .sidebar.collapsed { transform: translateX(-100%); margin-left: 0; }
+  .content-area { padding: 1.5rem 1rem 4rem; }
+  .cover-title { font-size: 1.75rem; }
+}
+
+.article-body p.li { padding-left: 1.4rem; position: relative; }
+.article-body p.li::before { content: '•'; position: absolute; left: 0.3rem; color: var(--accent); }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+.article-body em { font-style: italic; }
