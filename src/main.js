@@ -23,6 +23,8 @@ const elements = {
   readingProgress: document.getElementById('readingProgress'),
   readingContainer: document.getElementById('readingContainer'),
   sidebar: document.getElementById('sidebar'),
+  sidebarBackdrop: document.getElementById('sidebarBackdrop'),
+  closeSidebarBtn: document.getElementById('closeSidebarBtn'),
   tocNav: document.getElementById('tocNav'),
   sidebarFilterInput: document.getElementById('sidebarFilterInput'),
   toggleSidebarBtn: document.getElementById('toggleSidebarBtn'),
@@ -47,6 +49,28 @@ const elements = {
   closeAuthorModalBtn: document.getElementById('closeAuthorModalBtn'),
   navTabs: document.querySelectorAll('.nav-tab-btn')
 };
+
+function openSidebar() {
+  elements.sidebar.classList.remove('collapsed');
+  if (elements.sidebarBackdrop && window.innerWidth <= 860) {
+    elements.sidebarBackdrop.classList.add('active');
+  }
+}
+
+function closeSidebar() {
+  elements.sidebar.classList.add('collapsed');
+  if (elements.sidebarBackdrop) {
+    elements.sidebarBackdrop.classList.remove('active');
+  }
+}
+
+function toggleSidebar() {
+  if (elements.sidebar.classList.contains('collapsed')) {
+    openSidebar();
+  } else {
+    closeSidebar();
+  }
+}
 
 // --------------------------------------------------------------------------
 // Тақырып және қаріп
@@ -412,7 +436,7 @@ function navigate(route) {
   }
 
   if (window.innerWidth <= 860) {
-    elements.sidebar.classList.add('collapsed');
+    closeSidebar();
   }
 }
 
@@ -519,7 +543,9 @@ function init() {
   applyTheme(state.theme);
   applyFontSize(state.fontSize);
 
-  elements.toggleSidebarBtn.addEventListener('click', () => elements.sidebar.classList.toggle('collapsed'));
+  elements.toggleSidebarBtn.addEventListener('click', toggleSidebar);
+  elements.closeSidebarBtn?.addEventListener('click', closeSidebar);
+  elements.sidebarBackdrop?.addEventListener('click', closeSidebar);
   elements.brandHomeBtn.addEventListener('click', () => window.location.hash = '#cover');
   elements.navTabs.forEach(btn => {
     if (btn.dataset.route) {

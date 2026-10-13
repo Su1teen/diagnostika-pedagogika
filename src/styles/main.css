@@ -329,12 +329,35 @@ button { font-family: inherit; font-size: 0.95rem; border: none; background: non
 .modal-header { padding: 1.15rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
 .modal-body { padding: 1.5rem; overflow-y: auto; line-height: 1.7; font-size: 0.95rem; }
 
-@media (max-width: 860px) {
-  .nav-center { display: none; }
-  .sidebar { position: fixed; top: 62px; left: 0; height: calc(100vh - 62px); box-shadow: var(--shadow-lg); }
-  .sidebar.collapsed { transform: translateX(-100%); margin-left: 0; }
-  .content-area { padding: 1.5rem 1rem 4rem; }
-  .cover-title { font-size: 1.75rem; }
+/* Сайдбар оверлейі мен жабу түймесі (Мобильді) */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 850;
+  transition: opacity 0.25s ease;
+}
+.sidebar-backdrop.active {
+  display: block;
+}
+
+.sidebar-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+}
+.sidebar-close-btn:hover {
+  color: var(--text-main);
+  background: var(--bg-hover);
 }
 
 .article-body p.li { padding-left: 1.4rem; position: relative; }
@@ -342,3 +365,152 @@ button { font-family: inherit; font-size: 0.95rem; border: none; background: non
 .text-center { text-align: center !important; }
 .text-right { text-align: right !important; }
 .article-body em { font-style: italic; }
+
+/* ==========================================================================
+   Адаптивті дизайн (Планшет және Мобильді құрылғылар)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .nav-center { gap: 0.2rem; }
+  .nav-tab-btn { padding: 0.35rem 0.55rem; font-size: 0.8rem; }
+}
+
+@media (max-width: 860px) {
+  .top-navbar {
+    padding: 0 1rem;
+    gap: 0.5rem;
+  }
+  .nav-center {
+    display: none;
+  }
+  .sidebar {
+    position: fixed;
+    top: 62px;
+    left: 0;
+    width: min(86vw, 320px);
+    height: calc(100vh - 62px);
+    z-index: 950;
+    box-shadow: var(--shadow-lg);
+    transform: translateX(0);
+    margin-left: 0;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+    margin-left: 0;
+  }
+  .sidebar-close-btn {
+    display: block;
+  }
+  .content-area {
+    padding: 1.75rem 1rem 4rem;
+  }
+  .cover-hero {
+    padding: 2.25rem 1.5rem;
+  }
+  .cover-title {
+    font-size: 1.65rem;
+  }
+  .special-section-header {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .top-navbar {
+    padding: 0 0.75rem;
+  }
+  .book-brand-subtitle {
+    display: none;
+  }
+  .book-brand-title {
+    font-size: 0.84rem;
+    max-width: 190px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .control-btn span {
+    display: none;
+  }
+  .control-btn {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  .cover-hero {
+    padding: 1.75rem 1rem;
+    border-radius: var(--radius-md);
+    gap: 1rem;
+  }
+  .cover-ministry {
+    font-size: 0.75rem;
+  }
+  .cover-title {
+    font-size: 1.25rem;
+  }
+  .cover-author {
+    font-size: 1rem;
+  }
+  .cover-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.65rem;
+  }
+  .cover-actions .btn-primary,
+  .cover-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+  .cover-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+  }
+  .chapter-navigation {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .nav-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  .filter-pills-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.35rem;
+  }
+  .filter-pill {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .special-item-card {
+    padding: 1.1rem;
+  }
+  .article-title {
+    font-size: 1.45rem;
+  }
+  .article-body {
+    font-size: 0.95rem;
+    gap: 1rem;
+  }
+  .modal-box {
+    max-height: 90vh;
+    border-radius: var(--radius-md);
+  }
+  .modal-header {
+    padding: 0.85rem 1rem;
+  }
+  .modal-body {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  .table-container {
+    margin: 1rem -0.5rem;
+    padding: 0 0.5rem;
+  }
+}
