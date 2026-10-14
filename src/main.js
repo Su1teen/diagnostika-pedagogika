@@ -169,7 +169,7 @@ function renderCoverPage() {
   elements.readingContainer.innerHTML = `
     <div class="cover-hero">
       <div class="cover-ministry">
-        Құдайберген Жұбанов атындағы Ақтөбе өңірлік университеті (АӨУ)
+        Қ.Жұбанов атындағы Ақтөбе өңірлік университеті
       </div>
 
       <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 3px solid var(--border); box-shadow: var(--shadow-sm); margin: -0.25rem 0;">
